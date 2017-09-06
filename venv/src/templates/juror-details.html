@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}Juror Details | {{juror.name}}{% endblock %}
+
+{% block content %}
+
+<a href="/juror-details/{{juror.id}}/pdf">print juror card to pdf</a>
+
+<p><b>Name:</b> {{juror.name}}</p>
+<p><b>Age:</b> {{juror.age}}</p>
+<p><b>Occupation:</b> {{juror.occupation}}</p>
+
+{% endblock %}

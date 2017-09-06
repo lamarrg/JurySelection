@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}{% endblock %}
+
+<!--
+self.foreign_key = foreign_key
+        self.name = name
+        self.age = age
+        self.occupation = occupation
+-->
+
+{% block content %}
+<h1>Add New Juror</h1>
+
+<form action="" method="POST">
+    <label>choose trial</label><br>
+<!--    {% for trial_name in trial_names %}
+        <p><input type="radio" name="foreign_key" id="{{trial_name.id}}" value="{{trial_name.id}}"><label>{{trial_name.name}}-{{trial_name.id}}</label></p>
+    {% endfor %}  -->
+
+    <select name="foreign_key">
+    {% for trial_name in trial_names %}
+        <option value="{{trial_name.id}}">{{trial_name.name}}
+    {% endfor %}
+    </select>
+
+    <p><label>name</label><br><input type="text" name="name" value=""></p>
+    <p><label>age</label><br><input type="text" name="age" value=""></p>
+    <p><label>occupation</label><br><input type="text" name="occupation" value=""></p>
+
+
+    <p><input type="submit" value="submit new juror"></p>
+
+</form>
+
+{% endblock %}
