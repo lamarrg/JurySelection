@@ -13,4 +13,4 @@ Here are some of the parameters I was able to get, and some decisions I made...
   * used sqlite3 as I didnt want them to have to worry about installing and maintaing any external software
   * create 3x5 pdfs to print the data, and to be able to look at it locally 
 
-For as simple as it is, there is still a lundry list of things I want to do to it to make it more user friendly.
+For as simple as it is, there is still a lundry list of things I want to do to it to make it more user friendly. (laundry list coming soon) 
