@@ -1,5 +1,5 @@
 # JurySelection
-keep data on potential jurors
+Data aggregation for potential jurors
 
 This was a project that started off being a potential side job that never came to fruition. 
 
