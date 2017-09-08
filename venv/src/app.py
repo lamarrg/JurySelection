@@ -44,9 +44,6 @@ def home():
     # return "hmmmmmm...."
     nav_menu = get_nav_menu()
     trial_names = TrialModel.query.all()
-    # return render_template('home.html', justice=justice, trial_names=trial_names, nav_menu=nav_menu)
-    # insert_data.new_trials()
-    # insert_data.new_jurors()
     return redirect('/trials')
 
 
@@ -78,14 +75,13 @@ def add_trial():
 @app.route('/juror/new', methods=['GET', 'POST'])
 def add_juror():
     trial_names = TrialModel.query.all()
-
     if request.method == 'POST':
         foreign_key = request.form['foreign_key']
         name = request.form['name']
         age = request.form['age']
         occupation = request.form['occupation']
         trial = TrialModel.query.filter_by(id=foreign_key).first()
-        new_juror = JurorModel(foreign_key, name, age, occupation, trial=trial.name)
+        new_juror = JurorModel(foreign_key, name, age, occupation, trial.name)
         new_juror.save_to_db()
     return render_template('add-juror.html', trial_names=trial_names)
 
@@ -97,7 +93,7 @@ def juror_details(num1, pdf=""):
     nav_menu = get_nav_menu()
     if pdf == 'pdf':
         print(juror.name)
-        print_pdf.print_me1(filename=juror.name, content=(juror.name, juror.occupation, juror.trial))
+        print_pdf.print_juror(filename=juror.name, content=(juror.name, juror.occupation, juror.trial))
         return redirect('/juror-details/{}'.format(num1))
     return render_template('/juror-details.html', juror=juror, nav_menu=nav_menu)
 

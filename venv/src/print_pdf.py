@@ -1,13 +1,13 @@
 from fpdf import FPDF
+import os
 
 pdf = FPDF(format='3x5', unit='in')
 pdf.add_page()
 pdf.set_font('Arial', '', 12) # pdf.set_font('Arial', 'B', 16)
-#pdf.cell(40, 10, 'hello, me! margin test. Arial font, 12px. no bold')
 effective_page_width = pdf.w - 2*pdf.l_margin
 
 
-def print_me1(filename, content):
+def print_juror(filename, content):
     pdf.set_font('Times', 'B', 12.0)
     pdf.cell(1.0, 0.0, str(content[2]).upper())
     pdf.ln(0.35)
@@ -28,7 +28,11 @@ def print_me1(filename, content):
     # pdf.cell(1.0, 0.0, content[1])
     # pdf.ln(0.25)
 
-    return pdf.output("trials/"+content[2]+"/"+content[0]+".pdf", 'F')
+    file_path = 'trials/'+content[2].lower().replace(" ", "_")
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+
+    return pdf.output(file_path+"/"+content[0]+".pdf", 'F')
 
 
 # def print_me(filename, content):
