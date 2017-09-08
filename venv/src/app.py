@@ -38,7 +38,6 @@ def retrieve_jurors():
 
 @app.route('/')
 def home():
-    justice = TrialModel.query.all()
     # db.session.add(justice)
     # db.session.commit()
     # return "hmmmmmm...."
@@ -101,6 +100,4 @@ if __name__ == '__main__':
     from db import db
     db.init_app(app)
     app.run(debug=True)
-    # insert_data.new_trials()
-    # insert_data.new_jurors()
 
