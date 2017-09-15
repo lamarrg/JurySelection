@@ -71,7 +71,7 @@ def add_trial():
     return render_template('add-trial.html')
 
 
-@app.route('/juror/new', methods=['GET', 'POST'])
+@app.route('/juror/new', methods=['GET','POST'])
 def add_juror():
     trial_names = TrialModel.query.all()
     if request.method == 'POST':
@@ -82,7 +82,34 @@ def add_juror():
         trial = TrialModel.query.filter_by(id=foreign_key).first()
         new_juror = JurorModel(foreign_key, name, age, occupation, trial.name)
         new_juror.save_to_db()
+
     return render_template('add-juror.html', trial_names=trial_names)
+
+@app.route('/juror/edit/<int:num1>', methods=['GET', 'POST'])
+def edit_juror(num1):
+    trial_names = TrialModel.query.all()
+    if request.method == 'GET':
+        juror_data = JurorModel.query.filter_by(id=num1).first()
+        # foreign_key = request.form['foreign_key']
+        # name = request.form['name']
+        # age = request.form['age']
+        # occupation = request.form['occupation']
+        # trial = TrialModel.query.filter_by(id=foreign_key).first()
+        # juror = JurorModel(foreign_key, name, age, occupation, trial.name)
+        # juror.save_to_db()
+        return render_template('edit-juror.html', trial_names=trial_names, juror_data=juror_data)
+
+    if request.method == 'POST':
+        juror = JurorModel.query.filter_by(id=num1).first()
+        juror.foreign_key = request.form['foreign_key']
+        juror.name = request.form['name']
+        juror.age = request.form['age']
+        juror.occupation = request.form['occupation']
+        trial = TrialModel.query.filter_by(id=juror.foreign_key).first()
+        #juror = JurorModel(foreign_key, name, age, occupation, trial.name)
+        juror.update_to_db()
+        #juror.save_to_db()
+        return redirect('/juror-details/{}'.format(num1))
 
 
 @app.route('/juror-details/<int:num1>')
