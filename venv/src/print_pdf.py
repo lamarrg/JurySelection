@@ -7,32 +7,38 @@ pdf.set_font('Arial', '', 12) # pdf.set_font('Arial', 'B', 16)
 effective_page_width = pdf.w - 2*pdf.l_margin
 
 
-def print_juror(filename, content):
+def print_juror(juror):
     pdf.set_font('Times', 'B', 12.0)
-    pdf.cell(1.0, 0.0, str(content[2]).upper())
+    pdf.cell(0, 0.0, str(juror.trial).upper())
     pdf.ln(0.35)
 
     pdf.set_font('Times', 'B', 10.0)
-    pdf.cell(0.5, 0.0, 'Name: ')
+    pdf.cell(0.45, 0.0, 'Name: ')
     pdf.set_font('Times', '', 10.0)
-    pdf.cell(1.0, 0.0, content[0])
+    pdf.cell(0, 0.0, juror.name, ln=0)
     pdf.ln(0.25)
 
     pdf.set_font('Times', 'B', 10.0)
-    pdf.cell(1.0, 0.0, 'Occupation:')
+    pdf.cell(0.35, 0.0, 'Age: ')
     pdf.set_font('Times', '', 10.0)
-    pdf.cell(1.0, 0.0, content[1])
+    pdf.cell(0, 0.0, str(juror.age))
+    pdf.ln(0.25)
+
+    pdf.set_font('Times', 'B', 10.0)
+    pdf.cell(.85, 0.0, 'Occupation:')
+    pdf.set_font('Times', '', 10.0)
+    pdf.cell(1.0, 0.0, juror.occupation)
     pdf.ln(0.25)
 
     # pdf.set_font('Times', '', 10.0)
     # pdf.cell(1.0, 0.0, content[1])
     # pdf.ln(0.25)
 
-    file_path = 'trials/'+content[2].lower().replace(" ", "_")
+    file_path = 'trials/'+juror.trial.lower().replace(" ", "_")
     if not os.path.exists(file_path):
         os.makedirs(file_path)
 
-    return pdf.output(file_path+"/"+content[0]+".pdf", 'F')
+    return pdf.output(file_path+"/"+juror.name+".pdf", 'F')
 
 
 # def print_me(filename, content):

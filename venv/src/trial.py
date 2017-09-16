@@ -13,3 +13,8 @@ class TrialModel(db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
+
+    @staticmethod
+    def retrieve_trials():
+        trials = TrialModel.query.all()
+        return trials

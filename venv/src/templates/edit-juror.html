@@ -20,7 +20,11 @@ self.foreign_key = foreign_key
 
     <select name="foreign_key">
     {% for trial_name in trial_names %}
-        <option value="{{trial_name.id}}">{{trial_name.name}}
+        {% if trial_name.id == juror_data.foreign_key %}
+            <option value="{{trial_name.id}}" selected="selected" >{{trial_name.name}}
+        {% else %}
+            <option value="{{trial_name.id}}">{{trial_name.name}}
+        {% endif %}
     {% endfor %}
     </select>
 

@@ -3,19 +3,10 @@ from trial import TrialModel
 
 
 def retrieve_trials():
-    print("Trials")
-    trial_names = TrialModel.query.all()
-    for a in trial_names:
-        print(a)
+    trials = TrialModel.query.all()
+    return trials
 
 
 def retrieve_jurors():
-    print("Jurors")
-    juror_names = JurorModel.query.all()
-    for a in juror_names:
-        print(a)
-
-
-# retrieve_trials()
-#
-# retrieve_jurors()
+    jurors = JurorModel.query.all()
+    return jurors
