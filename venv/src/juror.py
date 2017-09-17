@@ -22,3 +22,11 @@ class JurorModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @staticmethod
+    def update_to_db():
+        db.session.commit()
+
+    @staticmethod
+    def retrieve_jurors():
+        jurors = JurorModel.query.all()
+        return jurors
