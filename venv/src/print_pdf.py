@@ -9,30 +9,26 @@ effective_page_width = pdf.w - 2*pdf.l_margin
 
 def print_juror(juror):
     pdf.set_font('Times', 'B', 12.0)
-    pdf.cell(0, 0.0, str(juror.trial).upper())
+    pdf.cell(0.0, 0.0, str(juror.trial).upper())
     pdf.ln(0.35)
 
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.45, 0.0, 'Name: ')
     pdf.set_font('Times', '', 10.0)
-    pdf.cell(0, 0.0, juror.name, ln=0)
+    pdf.cell(0.0, 0.0, juror.name, ln=0)
     pdf.ln(0.25)
 
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.35, 0.0, 'Age: ')
     pdf.set_font('Times', '', 10.0)
-    pdf.cell(0, 0.0, str(juror.age))
+    pdf.cell(0.0, 0.0, str(juror.age))
     pdf.ln(0.25)
 
     pdf.set_font('Times', 'B', 10.0)
-    pdf.cell(.85, 0.0, 'Occupation:')
+    pdf.cell(0.85, 0.0, 'Occupation:')
     pdf.set_font('Times', '', 10.0)
-    pdf.cell(1.0, 0.0, juror.occupation)
+    pdf.cell(0.0, 0.0, juror.occupation)
     pdf.ln(0.25)
-
-    # pdf.set_font('Times', '', 10.0)
-    # pdf.cell(1.0, 0.0, content[1])
-    # pdf.ln(0.25)
 
     file_path = 'trials/'+juror.trial.lower().replace(" ", "_")
     if not os.path.exists(file_path):

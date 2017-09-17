@@ -22,7 +22,8 @@ class JurorModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def update_to_db(self):
+    @staticmethod
+    def update_to_db():
         db.session.commit()
 
     @staticmethod
