@@ -3,9 +3,11 @@
 {% block title %}Trial List{% endblock %}
 
 {% block content %}
-
+<br>
+<h1>Trials</h1>
+<br>
 {% for trial in trial_names %}
-<p><a href="/trial/{{trial.id}}">{{trial.name}} - {{trial.id}}</a></p>
+<p><a href="/trial/{{trial.id}}">{{trial.name}}<!--  - {{trial.id}}--> </a></p>
 {% endfor %}
 
 {% endblock %}

@@ -30,3 +30,8 @@ class JurorModel(db.Model):
     def retrieve_jurors():
         jurors = JurorModel.query.all()
         return jurors
+
+    def remove_juror(self):
+        # delete pdf file
+        db.session.delete(self)
+        db.session.commit()

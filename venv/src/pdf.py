@@ -7,6 +7,13 @@ pdf.set_font('Arial', '', 12) # pdf.set_font('Arial', 'B', 16)
 effective_page_width = pdf.w - 2*pdf.l_margin
 
 
+def file_path_underscore(path_text):
+    return path_text.lower().replace(" ", "_")
+
+# def juror_file_path_underscore(juror_name):
+#     return
+
+
 def print_juror(juror):
     pdf.set_font('Times', 'B', 12.0)
     pdf.cell(0.0, 0.0, str(juror.trial).upper())
@@ -30,11 +37,24 @@ def print_juror(juror):
     pdf.cell(0.0, 0.0, juror.occupation)
     pdf.ln(0.25)
 
-    file_path = 'trials/'+juror.trial.lower().replace(" ", "_")
-    if not os.path.exists(file_path):
-        os.makedirs(file_path)
+    trial_file_path = 'trials/'+file_path_underscore(juror.trial)
+    juror_file_path = file_path_underscore(juror.name)
+    if not os.path.exists(trial_file_path):
+        os.makedirs(trial_file_path)
 
-    return pdf.output(file_path+"/"+juror.name+".pdf", 'F')
+    return pdf.output(trial_file_path+"/"+juror_file_path+".pdf", 'F')
+
+
+def remove_juror_pdf(juror):
+    trial_file_path = 'trials/'+file_path_underscore(juror.trial)
+    juror_file_path = file_path_underscore(juror.name)
+    pdf = trial_file_path+'/'+juror_file_path+".pdf"
+    if os.path.exists(pdf):
+        try:
+            os.remove(pdf)
+        except OSError:
+            pass
+
 
 
 # def print_me(filename, content):

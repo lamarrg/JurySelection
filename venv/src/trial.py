@@ -18,3 +18,8 @@ class TrialModel(db.Model):
     def retrieve_trials():
         trials = TrialModel.query.all()
         return trials
+
+    def remove_trial(self):
+        # need to delete database record, folder and jurors in folder if not empty
+        db.session.delete(self)
+        db.session.commit()

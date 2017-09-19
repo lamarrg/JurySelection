@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for
 
 from juror import JurorModel
 from trial import TrialModel
-import print_pdf
+import pdf
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -55,7 +55,7 @@ def add_juror():
         trial = TrialModel.query.filter_by(id=foreign_key).first()
         new_juror = JurorModel(foreign_key, name, age, occupation, trial.name)
         new_juror.save_to_db()
-        print_pdf.print_juror(new_juror)
+        pdf.print_juror(new_juror)
     return render_template('add-juror.html', trial_names=trial_names)
 
 
@@ -75,8 +75,16 @@ def edit_juror(num1):
         trial = TrialModel.query.filter_by(id=juror.foreign_key).first()
         juror.trial = trial.name
         juror.update_to_db()
-        print_pdf.print_juror(juror)
+        pdf.print_juror(juror)
         return redirect('/juror-details/{}'.format(num1))
+
+
+@app.route('/juror/delete/<int:juror_id>/<trial_id>')
+def delete_juror(juror_id, trial_id):
+    juror = JurorModel.query.filter_by(id=juror_id).first()
+    juror.remove_juror()
+    pdf.remove_juror_pdf(juror)
+    return redirect('/trial/{}'.format(trial_id))
 
 
 @app.route('/juror-details/<int:num1>')
