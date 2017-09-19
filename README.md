@@ -18,4 +18,4 @@ For as simple as it is, there are additional functionality to make it more user 
 List of improvements...
    * delete functionality - deleting a trial will also delete a the folder and cards in it.
    * create proper testing
-   
+   * add flask blueprints
