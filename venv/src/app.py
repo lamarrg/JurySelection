@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request
 
 
 from juror import JurorModel
@@ -52,8 +52,9 @@ def add_juror():
         name = request.form['name']
         age = request.form['age']
         occupation = request.form['occupation']
+        details = request.form['details']
         trial = TrialModel.query.filter_by(id=foreign_key).first()
-        new_juror = JurorModel(foreign_key, name, age, occupation, trial.name)
+        new_juror = JurorModel(foreign_key, name, age, occupation, details,trial.name)
         new_juror.save_to_db()
         pdf.print_juror(new_juror)
     return render_template('add-juror.html', trial_names=trial_names)
@@ -72,6 +73,7 @@ def edit_juror(num1):
         juror.name = request.form['name']
         juror.age = request.form['age']
         juror.occupation = request.form['occupation']
+        juror.details = request.form['details']
         trial = TrialModel.query.filter_by(id=juror.foreign_key).first()
         juror.trial = trial.name
         juror.update_to_db()

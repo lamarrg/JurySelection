@@ -17,25 +17,32 @@ def file_path_underscore(path_text):
 def print_juror(juror):
     pdf.set_font('Times', 'B', 12.0)
     pdf.cell(0.0, 0.0, str(juror.trial).upper())
-    pdf.ln(0.35)
+    pdf.ln(0.25)
 
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.45, 0.0, 'Name: ')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, juror.name, ln=0)
-    pdf.ln(0.25)
+    pdf.ln(0.2)
 
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.35, 0.0, 'Age: ')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, str(juror.age))
-    pdf.ln(0.25)
+    pdf.ln(0.2)
 
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.85, 0.0, 'Occupation:')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, juror.occupation)
-    pdf.ln(0.25)
+    pdf.ln(0.2)
+
+    pdf.set_font('Times', 'B', 10.0)
+    pdf.cell(0.0, 0.0, 'Details:')
+    pdf.ln(0.10)
+    pdf.set_font('Times', '', 10.0)
+    pdf.multi_cell(effective_page_width, 0.0, juror.details)
+    pdf.ln(0.15)
 
     trial_file_path = 'trials/'+file_path_underscore(juror.trial)
     juror_file_path = file_path_underscore(juror.name)
