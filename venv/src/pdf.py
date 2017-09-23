@@ -41,7 +41,7 @@ def print_juror(juror):
     pdf.cell(0.0, 0.0, 'Details:')
     pdf.ln(0.10)
     pdf.set_font('Times', '', 10.0)
-    pdf.multi_cell(effective_page_width, 0.0, juror.details)
+    pdf.multi_cell(effective_page_width, 0.15, juror.details)
     pdf.ln(0.15)
 
     trial_file_path = 'trials/'+file_path_underscore(juror.trial)
