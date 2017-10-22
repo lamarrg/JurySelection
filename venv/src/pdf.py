@@ -10,33 +10,35 @@ effective_page_width = pdf.w - 2*pdf.l_margin
 def file_path_underscore(path_text):
     return path_text.lower().replace(" ", "_")
 
-# def juror_file_path_underscore(juror_name):
-#     return
-
 
 def print_juror(juror):
+    # cell for header-trial name
     pdf.set_font('Times', 'B', 12.0)
     pdf.cell(0.0, 0.0, str(juror.trial).upper())
     pdf.ln(0.25)
 
+    # cell for name
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.45, 0.0, 'Name: ')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, juror.name, ln=0)
     pdf.ln(0.2)
 
+    # cell for age
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.35, 0.0, 'Age: ')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, str(juror.age))
     pdf.ln(0.2)
 
+    # cell for occupation
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.85, 0.0, 'Occupation:')
     pdf.set_font('Times', '', 10.0)
     pdf.cell(0.0, 0.0, juror.occupation)
     pdf.ln(0.2)
 
+    # cell for details. wraps data to fit width of card
     pdf.set_font('Times', 'B', 10.0)
     pdf.cell(0.0, 0.0, 'Details:')
     pdf.ln(0.10)

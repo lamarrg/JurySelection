@@ -11,7 +11,7 @@ Here are some of the parameters I was able to get, and some decisions I made...
   * locally used (no login required as it was used by a single person from their laptop)
   * made it a web app so it is is easy to navigate and enter data
   * used sqlite3 as I did not want them to have to worry about installing and maintaining any external software
-  * create 3x5 pdfs to print the data, and to be able to look at it locally - This was a "difficult" decision. I normally don't have to deal with stored files... (add more explanation)
+  * create 3x5 pdfs to print the data, and to be able to look at it locally - This was a "difficult" decision. I normally don't have to deal with stored files such as these pdfs. But it is what the client outlined in our brief discussion. 
 
 For as simple as it is, there are additional functionality to make it more user friendly.
 
