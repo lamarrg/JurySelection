@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, request
 
-
 from juror import JurorModel
 from trial import TrialModel
 import pdf
@@ -8,7 +7,7 @@ import pdf
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'klanoiew239jpdw#@)(2d'
+app.secret_key = 'klanoiew239jpdw'
 
 
 @app.before_first_request
@@ -68,16 +67,17 @@ def edit_juror(num1):
         return render_template('edit-juror.html', trial_names=trial_names, juror_data=juror_data)
 
     if request.method == 'POST':
-        juror = JurorModel.query.filter_by(id=num1).first()
-        juror.foreign_key = request.form['foreign_key']
-        juror.name = request.form['name']
-        juror.age = request.form['age']
-        juror.occupation = request.form['occupation']
-        juror.details = request.form['details']
-        trial = TrialModel.query.filter_by(id=juror.foreign_key).first()
-        juror.trial = trial.name
-        juror.update_to_db()
-        pdf.print_juror(juror)
+        juror_edited = JurorModel.query.filter_by(id=num1).first()
+        juror_edited.foreign_key = request.form['foreign_key']
+        juror_edited.name = request.form['name']
+        juror_edited.age = request.form['age']
+        juror_edited.occupation = request.form['occupation']
+        juror_edited.details = request.form['details']
+        trial = TrialModel.query.filter_by(id=juror_edited.foreign_key).first()
+        juror_edited.trial = trial.name
+        juror_edited.update_to_db()
+        pdf.print_juror(juror_edited)
+        print(juror_edited.age)
         return redirect('/juror-details/{}'.format(num1))
 
 
