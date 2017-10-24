@@ -9,7 +9,7 @@
 
 {% if juror_list %}
     {% for juror in juror_list %}
-    <p><a href="/juror-details/{{juror.id}}">{{juror.name}}</a></p>
+    <p><a href="/juror/details/{{juror.id}}">{{juror.name}}</a></p>
     {% endfor %}
 {% else %}
 <p>Sorry, no jurors listed for this trial</p>
