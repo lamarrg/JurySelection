@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect
 
-from juror import JurorModel, jurors
+from juror import jurors
 from trial import TrialModel, trials
-#import pdf
+
 
 app = Flask(__name__)
 app.register_blueprint(jurors)

@@ -2,7 +2,6 @@ from db import db
 from flask import Blueprint, request, render_template
 
 
-
 trials = Blueprint('trial', __name__, template_folder='templates')
 
 
@@ -40,7 +39,6 @@ def trial_jurors(num1):
 
 @trials.route('/trial/new', methods=['GET', 'POST'])
 def add_trial():
-    # ADD A DIRECTORY WITH TRIAL NAME TO STORE CARDS
     if request.method == 'POST':
         name = request.form['trial_name']
         new_trial = TrialModel(name)
