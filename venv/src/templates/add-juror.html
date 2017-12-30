@@ -2,21 +2,12 @@
 
 {% block title %}{% endblock %}
 
-<!--
-self.foreign_key = foreign_key
-        self.name = name
-        self.age = age
-        self.occupation = occupation
--->
-
 {% block content %}
 <h1>Add New Juror</h1>
 
 <form id="juror-info-new" action="" method="POST">
     <label>choose trial</label><br>
-<!--    {% for trial_name in trial_names %}
-        <p><input type="radio" name="foreign_key" id="{{trial_name.id}}" value="{{trial_name.id}}"><label>{{trial_name.name}}-{{trial_name.id}}</label></p>
-    {% endfor %}  -->
+
 
     <select name="foreign_key">
     {% for trial_name in trial_names %}

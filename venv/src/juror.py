@@ -14,16 +14,15 @@ class JurorModel(db.Model):
     age = db.Column(db.INTEGER)
     occupation = db.Column(db.String(120))
     details = db.Column(db.String(120))
-    trial = db.Column(db.String(80))
+    # trial = db.Column(db.String(80))
     foreign_key = db.Column(db.INTEGER, db.ForeignKey('trials.id'))
 
-    def __init__(self, foreign_key, name, age, occupation, details, trial):
+    def __init__(self, foreign_key, name, age, occupation, details):
         self.foreign_key = int(foreign_key)
         self.name = name
         self.age = int(age)
         self.occupation = occupation
         self.details = details
-        self.trial = trial
 
     def save_to_db(self):
         db.session.add(self)
@@ -33,10 +32,14 @@ class JurorModel(db.Model):
     def update_to_db():
         db.session.commit()
 
+    def get_trial_name(self):
+        trial_name = TrialModel.query.filter_by(id=self.foreign_key).first()
+        return trial_name.name
+
     @staticmethod
     def retrieve_jurors():
-        jurors = JurorModel.query.all()
-        return jurors
+        all_jurors = JurorModel.query.all()
+        return all_jurors
 
     def remove_juror(self):
         # delete pdf file
@@ -53,8 +56,7 @@ def add_juror():
         age = request.form['age']
         occupation = request.form['occupation']
         details = request.form['details']
-        trial = TrialModel.query.filter_by(id=foreign_key).first()
-        new_juror = JurorModel(foreign_key, name, age, occupation, details,trial.name)
+        new_juror = JurorModel(foreign_key, name, age, occupation, details)
         new_juror.save_to_db()
         pdf.print_juror(new_juror)
     return render_template('add-juror.html', trial_names=trial_names)
@@ -74,8 +76,6 @@ def edit_juror(num1):
         juror_edited.age = request.form['age']
         juror_edited.occupation = request.form['occupation']
         juror_edited.details = request.form['details']
-        trial = TrialModel.query.filter_by(id=juror_edited.foreign_key).first()
-        juror_edited.trial = trial.name
         juror_edited.update_to_db()
         pdf.print_juror(juror_edited)
         print(juror_edited.age)

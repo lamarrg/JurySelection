@@ -14,9 +14,6 @@ self.foreign_key = foreign_key
 
 <form action="" id="juror-info-edit" method="POST">
     <label>choose trial</label><br>
-<!--    {% for trial_name in trial_names %}
-        <p><input type="radio" name="foreign_key" id="{{trial_name.id}}" value="{{trial_name.id}}"><label>{{trial_name.name}}-{{trial_name.id}}</label></p>
-    {% endfor %}  -->
 
     <select name="foreign_key">
     {% for trial_name in trial_names %}
@@ -31,7 +28,7 @@ self.foreign_key = foreign_key
     <p><label>name</label><br><input type="text" name="name" value="{{juror_data.name}}"></p>
     <p><label>age</label><br><input type="text" name="age" value="{{juror_data.age}}"></p>
     <p><label>occupation</label><br><input type="text" name="occupation" value="{{juror_data.occupation}}"></p>
-    <!-- <p><label>details</label><br><textarea rows="6" cols="50" name="details" value="{{juror_data.details}}" form="juror-info"></textarea></p> -->
+
     <p><label>details</label><br><textarea rows="6" cols="50" name="details" value="" form="juror-info-edit">{{juror_data.details}}</textarea></p>
 
 
