@@ -19,7 +19,7 @@ def print_juror(juror_data):
 
     # cell for header-trial name
     pdf.set_font('Times', 'B', 12.0)
-    pdf.cell(0.0, 0.0, str(juror_data.trial).upper())
+    pdf.cell(0.0, 0.0, str(juror_data.get_trial_name()).upper())
     pdf.ln(0.25)
 
     # cell for name
@@ -52,7 +52,7 @@ def print_juror(juror_data):
     pdf.multi_cell(effective_page_width, 0.15, juror_data.details)
     pdf.ln(0.15)
 
-    trial_file_path = 'trials/'+file_path_underscore(juror_data.trial)
+    trial_file_path = 'trials/'+file_path_underscore(juror_data.get_trial_name())
     juror_file_path = file_path_underscore(juror_data.name)
     if not os.path.exists(trial_file_path):
         os.makedirs(trial_file_path)
@@ -61,7 +61,7 @@ def print_juror(juror_data):
 
 
 def remove_juror_pdf(juror):
-    trial_file_path = 'trials/'+file_path_underscore(juror.trial)
+    trial_file_path = 'trials/'+file_path_underscore(juror.get_trial_name())
     juror_file_path = file_path_underscore(juror.name)
     pdf_to_remove = trial_file_path+'/'+juror_file_path+".pdf"
     if os.path.exists(pdf_to_remove):
