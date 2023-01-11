@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<h1>Add New Juror</h1>
+
+<form id="juror-info-new" action="" method="POST">
+    <label>choose trial</label><br>
+
+
+    <select name="foreign_key">
+    {% for trial_name in trial_names %}
+        <option value="{{trial_name.id}}">{{trial_name.name}}
+    {% endfor %}
+    </select>
+
+    <p><label>name</label><br><input type="text" name="name" value=""></p>
+    <p><label>age</label><br><input type="text" name="age" value=""></p>
+    <p><label>occupation</label><br><input type="text" name="occupation" value=""></p>
+    <p><label>details</label><br><textarea rows="6" cols="50" name="details"  form="juror-info-new"></textarea></p>
+
+
+
+    <p><input type="submit" value="submit new juror"></p>
+
+</form>
+
+{% endblock %}
