@@ -1,3 +1,5 @@
+This was just an empty repo for a long time. Uploaded useful files. I may see about actually makeing this work and be decent. 
+
 # JurySelection
 Data aggregation for potential jurors
 
